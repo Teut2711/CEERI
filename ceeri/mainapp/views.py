@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from . import forms
+from django.http import HttpResponse
 # Create your views here.
 
 
@@ -9,12 +10,13 @@ def index(request):
     if request.method == "POST":
 
         print(request.POST)
+        return HttpResponse("<h1>Sent</h1>")
 
-    form1 = forms.Form1()
-    form2 = forms.Form2()
-    form3 = forms.Form3()
-    form4 = forms.Form4()
-    form5 = forms.Form5()
+    form1 = forms.Form1(prefix="form1")
+    form2 = forms.Form2(prefix="form2")
+    form4 = forms.Form4(prefix="form3")
+    form3 = forms.Form3(prefix="form4")
+    form5 = forms.Form5(prefix="form5")
 #    form6 = forms.Form3()
 
     return render(request,
@@ -29,13 +31,10 @@ def index(request):
                                f"mainapp/section{i}.html"
                                for i in list(range(1, 5+1))
                            ],
-                           
+
                            "section1": [],
                            "section2": [],
-                           "section3": ['Animal Sciences & Biotechnology', 'Inorganic and Physical Chemistry',
-                                        'Organic and Medicinal Chemistry', 'Disaster Preparedness',
-                                        'Earth Sciences', 'Mathematical Sciences',
-                                        'Physical Sciences', 'Engineering Sciences'],
+                           
                            "section4": [],
                            "section5": ['Title', 'Name', 'Sex', 'Full Official Address',
                                         'Mobile', 'Telephone', 'Fax', 'Email', 'Position', 'Date of birth',

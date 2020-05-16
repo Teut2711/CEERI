@@ -1,26 +1,89 @@
-  body{
- 
-    padding: 4%;
-    height: 100vh;
-    width: 100vw;
+* {
+    color: #fff;
+}
+
+body {
+    background: #4b6cb7;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #182848, #4b6cb7);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #182848, #4b6cb7);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1%;
     justify-content: space-between;
-} 
-
-form{     border-radius:20%;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: content-box;
 }
 
-section[class^="section"] {
-width: 100%;
-height: 100%;
-} 
+.main-heading {
+    width: 40%;
+    border: 2px double rgba(245, 245, 245, 0.836);
+    border-radius: 30%;
+}
 
+form {
+    height: 100%;
+    width: 100%;
+    padding: 1%;
+    display: inline-block;
+}
 
-label{
+section {
+    padding: 10%;
+    width: 100%;
+    height: 100%;
+}
+
+section .heading-secondary h3 {
     text-align: center;
+    color: rgb(207, 205, 66);
+}
 
+#carouselExampleIndicators {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.big-form-submit {
+    text-align: center;
+}
+
+input[type="submit"] {
+    height: 10%;
+    width: 10%;
+}
+
+.model-form-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    z-index: 1000;
+}
+
+.model-form-data input {
+    border: none;
+    width: 100%;
+    overflow: visible;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+}
+
+.model-form-data:focus {
+    padding-bottom: 4%;
+}
+
+.model-form-data:invalid {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid red;
+    content: "*required";
+    color: "red"
 }
