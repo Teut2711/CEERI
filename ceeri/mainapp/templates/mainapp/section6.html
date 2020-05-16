@@ -1,0 +1,41 @@
+<div>
+    <h3 class="display-4">
+        Other participants (give name, address, and highest qualification for each of the Co-PrincipalInvestigator) (CO-I)
+    </h3>
+
+    <table>
+        <tbody>
+
+            {% for i in section6 %}
+            <tr>
+
+                <td>
+                    <div class="form-head">
+                        Name
+                    </div>
+                    <div class="form-input">
+                        <input type="text" />
+                    </div>
+                </td>
+                <td>
+                    <div class="form-head">
+                        Address
+                    </div>
+                    <div class="form-input">
+                        <input type="text" />
+                    </div>
+                </td>
+                <td>
+                    <div class="form-head">
+                        Highest Qualificaton
+                    </div>
+                    <div class="form-input">
+                        <input type="text" />
+                    </div>
+                </td>
+            </tr>{% endfor %}
+        </tbody>
+
+    </table>
+
+</div>
