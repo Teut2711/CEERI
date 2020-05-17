@@ -17,7 +17,8 @@ def index(request):
     form4 = forms.Form4(prefix="form3")
     form3 = forms.Form3(prefix="form4")
     form5 = forms.Form5(prefix="form5")
-#    form6 = forms.Form3()
+
+    
 
     return render(request,
                   "mainapp/index.html",

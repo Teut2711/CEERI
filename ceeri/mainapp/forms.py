@@ -18,6 +18,7 @@ class Form2(forms.Form):
 class Form3(forms.Form):
 
     subjects = forms.MultipleChoiceField(
+        label="",
         required=True,
         widget=forms.CheckboxSelectMultiple,
         choices=[("a", 'Animal Sciences & Biotechnology'), ("b", 'Inorganic and Physical Chemistry'),
@@ -36,10 +37,10 @@ class Form4(forms.Form):
 
     
     mobile = forms.IntegerField(required=False, widget=forms.TextInput(
-        attrs={'type': "tel", 'pattern':'[0-9]{10}' }))
+        attrs={'type': "tel", 'pattern':'[0-9]{4,5}-[0-9]{5, 10}' }))
 
     telephone = forms.IntegerField(required=False, 
-        widget=forms.TextInput(attrs={'type': "tel", 'pattern':'[0-9]{10}'}))
+        widget=forms.TextInput(attrs={'type': "tel", 'pattern':'((\+*)(0*|(0 )*|(0-)*|(91 )*)(\d{12}+|\d{10}+))'}))
 
     fax = forms.IntegerField(required=False, widget=forms.TextInput(
         attrs={'type': "tel", 'pattern':'[0-9]{10}'}))
@@ -50,8 +51,10 @@ class Form4(forms.Form):
 
 class Form5(forms.Form):
     
-    title = forms.CharField(max_length=100, help_text=" Prof/Dr/Mr./Ms",
-                           widget=forms.TextInput())
+    title = forms.CharField(max_length=100, 
+            help_text=mark_safe('<small class="form-text text-muted">' 
+            'Prof/Dr/Mr./Ms'),  widget=forms.TextInput())
+
     name = forms.CharField(max_length=100,
                            widget=forms.TextInput())
 
@@ -65,13 +68,16 @@ class Form5(forms.Form):
                                   ))
 
     mobile = forms.IntegerField(widget=forms.TextInput(
-        attrs={'type': "tel", 'pattern':'[0-9]{10}' }), help_text="Eg. 9098956756")
-
+        attrs={'type': "tel", 'pattern':'[0-9]{10}' }), help_text=mark_safe('<small class="form-text text-muted">'
+        'Eg. 9098956756")</small>'))
+    
     telephone = forms.IntegerField(
-        widget=forms.TextInput(attrs={'type': "tel"}), help_text="Eg. 0124-4089734")
+        widget=forms.TextInput(attrs={'type': "tel"}), help_text=mark_safe('<small class="form-text text-muted">'
+        'Eg. 0124-4089734</small>'))
 
-    fax = forms.IntegerField(widget=forms.TextInput(
-        attrs={'type': "tel"}), help_text="Eg. 0124-4089734")
+    fax = forms.IntegerField(
+        widget=forms.TextInput(attrs={'type': "tel"}), help_text=mark_safe('<small class="form-text text-muted">'
+        'Eg. 0124-4089734</small>'))
 
     email = forms.EmailField()
 
@@ -79,9 +85,11 @@ class Form5(forms.Form):
                                widget=forms.TextInput(
                                 ))
 
-    dob = forms.DateField(label="Date of Birth",widget=forms.DateInput( attrs={'type': 'date'}))
+    dob = forms.DateField(label="Date of Birth",
+                          widget=forms.DateInput( attrs={'type': 'date'}))
 
-    highestdegree = forms.CharField(label="Highest Degree University/Institute", max_length=100,
+    highestdegree = forms.CharField(label="Highest Degree University/Institute", 
+                                    max_length=100,
                                     widget=forms.TextInput)
 
     totaltime = forms.IntegerField(

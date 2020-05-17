@@ -26,33 +26,12 @@
     </div>
     <form method="POST" enctype='multipart/form-data'>
         {% csrf_token %}
-        <div id="carouselExampleIndicators" class="carousel slide">
-
-            <ol class="carousel-indicators ">
-                {% for i in sections %}
-                <li data-target="#carouselExampleIndicators" data-slide-to={{forloop.counter0}} class="{% if forloop.first %} active {% endif %}"></li>
-                {% endfor %}
-            </ol>
-
-            <div class="carousel-inner">
-                {% for section in sections %}
-                <div class="carousel-item {% if forloop.first %} active {% endif %}">
-                    <section>
-                        {% include section %}
-                    </section>
-                </div>
-                {% endfor %}
-            </div>
-
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+        
+         {% for section in sections %}
+        <section class="section{{ forloop.counter}}">
+            {% include section %}
+        </section>
+        {% endfor %}
         <div class="big-form-submit">
             <input type="submit" class="btn btn-primary mb-2" value="Submit">
         </div>

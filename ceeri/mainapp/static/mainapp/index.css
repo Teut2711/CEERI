@@ -12,11 +12,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1%;
+    padding: 2%;
     justify-content: space-between;
-    height: 100vh;
-    width: 100vw;
+    width: 80vw;
     box-sizing: content-box;
+    margin: auto;
 }
 
 .main-heading {
@@ -26,8 +26,8 @@ body {
 }
 
 form {
-    height: 100%;
-    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: inherit;
     padding: 1%;
     display: inline-block;
 }
@@ -36,6 +36,7 @@ section {
     padding: 10%;
     width: 100%;
     height: 100%;
+    box-shadow: 10px 10px 63px 0px rgba(0, 0, 0, 0.75);
 }
 
 section .heading-secondary h3 {
@@ -43,32 +44,15 @@ section .heading-secondary h3 {
     color: rgb(207, 205, 66);
 }
 
-#carouselExampleIndicators {
-    width: 100%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.big-form-submit {
-    text-align: center;
-}
-
-input[type="submit"] {
-    height: 10%;
-    width: 10%;
-}
-
 .model-form-data {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    z-index: 1000;
-    overflow-y: scroll;
+    align-items: flex-center;
+    justify-items: stretch;
 }
 
-.model-form-data input {
+.model-form-data input,
+input:focus-within {
     border: none;
     width: 100%;
     overflow: visible;
@@ -80,10 +64,26 @@ input[type="submit"] {
     padding-bottom: 4%;
 }
 
-.model-form-data:invalid {
+.model-form-data input:invalid {
     border: none;
     background-color: transparent;
     border-bottom: 1px solid red;
     content: "*required";
     color: "red"
+}
+
+.big-form-submit {
+    text-align: center;
+}
+
+.big-form-submit input {
+    position: fixed;
+    transform: translateX(-40px);
+    bottom: 20px;
+}
+
+.section5 ul:has(input[type="radio"]) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
