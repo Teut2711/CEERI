@@ -39,7 +39,7 @@ section {
     box-shadow: 10px 10px 63px 0px rgba(0, 0, 0, 0.75);
 }
 
-section .heading-secondary h3 {
+.heading-secondary h3 {
     text-align: center;
     color: rgb(207, 205, 66);
 }
@@ -47,22 +47,21 @@ section .heading-secondary h3 {
 .model-form-data {
     display: flex;
     flex-direction: column;
-    align-items: flex-center;
     justify-items: stretch;
 }
 
-.model-form-data input {
+.model-form-data input,
+.model-form-data input:focus,
+.model-form-data textarea {
     border: none;
     width: 100%;
     overflow: visible;
     background-color: transparent;
-    border-bottom: 1px solid rgb(199, 202, 219);
+    border-bottom: 2px solid rgb(241, 206, 8);
 }
 
 .model-form-data input:focus {
-    padding: 5px;
-    border: none;
-    border-bottom: 1px solid rgb(199, 202, 219);
+    outline: none;
 }
 
 .big-form-submit {
@@ -76,19 +75,72 @@ section .heading-secondary h3 {
 }
 
 
-/* input[type="text"]:required {
+/* 
+input[type="text"]:required {
     box-shadow: 0 0 0 #000;
 } */
 
-.model-form-data input:focus:required:invalid {
+.model-form-data input:focus:invalid,
+.model-form-data textarea:focus:invalid {
     border: none;
     background-color: transparent;
-    border-bottom: 2px solid red;
-    content: '*required';
-    color: red;
+    border-bottom: 2px solid rgb(233, 11, 11);
+    color: rgb(185, 12, 12);
 }
 
-.model-form-data input:focus,
-.model-form-data input:focus-within {
-    border: none;
+.section3 ul {
+    list-style-type: circle;
+}
+
+.section3 ul li input {
+    transform: translateY(1%);
+}
+
+.section3 ul li>label {
+    display: flex;
+    flex-flow: column-reverse;
+}
+
+.section3 ul li>label {
+    display: flex;
+    justify-content: space-between;
+    max-width: 380px;
+    align-items: center;
+    flex-flow: row-reverse;
+    width: 100%;
+}
+
+.section3 ul li label>input[type="checkbox"] {
+    width: initial;
+    border-radius: 2%;
+}
+
+.section5 p select {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+.section5 p select option,
+.section5 p select option::selection {
+    background-color: transparent;
+    color: black;
+}
+
+.section5 ul li>label {
+    display: flex;
+    justify-content: space-between;
+    max-width: 380px;
+    align-items: center;
+    flex-flow: row-reverse;
+    width: 100%;
+}
+
+.section5 ul li>label>input[type="radio"] {
+    width: initial;
+}
+
+.section5 textarea {
+    width: 100%;
+    padding: 1%;
 }

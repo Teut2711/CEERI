@@ -31,21 +31,21 @@ class Form3(forms.Form):
 
 class Form4(forms.Form):
     ### not required
-    name = forms.CharField(required=False, max_length=50,
+    name = forms.CharField(label="Name", required=False, max_length=50,
                            widget=forms.TextInput)
 
-    mobile = forms.CharField(max_length=15, required=False, widget=forms.TextInput(
+    mobile = forms.CharField(label="Mobile No.", max_length=15, required=False, widget=forms.TextInput(
         attrs={'type': "tel"}))
 
-    telephone = forms.CharField(max_length=15,
+    telephone = forms.CharField(label="Telephone No.",max_length=15,
                                 widget=forms.TextInput(attrs={'type': "tel"}),
                                 help_text=mark_safe('<small class="form-text text-muted">'
                                                     'Eg. 0124-4089734</small>'))
 
-    fax = forms.CharField(max_length=15, required=False, widget=forms.TextInput(
+    fax = forms.CharField(label="Fax",max_length=15, required=False, widget=forms.TextInput(
         attrs={'type': "tel"}))
 
-    email = forms.EmailField(required=False)
+    email = forms.EmailField(label="E-mail Address",required=False)
 
 
 class Form5(forms.Form):
@@ -62,7 +62,7 @@ class Form5(forms.Form):
                             widget=forms.RadioSelect)
 
     address = forms.CharField(max_length=100,
-                              widget=forms.Textarea)
+                              widget=forms.Textarea(attrs={"rows":"4"}))
 
     mobile = forms.CharField(max_length=15,
                              widget=forms.TextInput(

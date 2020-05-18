@@ -5,16 +5,15 @@ from itertools import zip_longest, tee
 from more_itertools import roundrobin
 
 
-
-doc = Document("CEERI.docx")
-
 def form1_process():
     pass
     doc.tables[1].rows[0].cells[1].text = form1
 
+
 def form2_process():
     pass
     doc.tables[2].rows[0].cells[1].text = form2
+
 
 def form3_process():
     pass
@@ -25,9 +24,11 @@ def form3_process():
     ], fillvalue=""):
         j.cells.text = u"\u25A1"+" "+i+" "
 
+
 def form4_process():
     pass
     doc.tables[4].rows[0].cells[1].text = form4
+
 
 def form5_process():
     pass
@@ -41,11 +42,16 @@ def form5_process():
         i.cells[1].text = forms5.fax
         i.cells[1].text = forms5.email
 
+
 def form6_process():
     pass
     doc.tables[6].rows[0].cells[0].text += form6
     doc.tables[6].rows[0].cells[1].text += form6
 
+
 def main(all_forms):
+
+    doc = Document(os.path.join(
+        os.path.dirname(__file__),
+        "CEERI.docx"))
     print(all_forms)
-    

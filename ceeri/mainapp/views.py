@@ -24,7 +24,7 @@ def index(request):
             if all_forms[f"form{i}"].is_valid():
                 document.main(all_forms[f"form{i}"].cleaned_data)
             else:
-                return HttpResponse("<h1>INVALID FORM : CLICK BACK BUTTOM TOP LEFT</h1>")
+                return HttpResponse("<h1>INVALID FORM : CLICK BACK BUTTON TOP LEFT</h1>")
 
         return HttpResponse("<h1>Sent</h1>")
 
