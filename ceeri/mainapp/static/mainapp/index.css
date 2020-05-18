@@ -51,39 +51,44 @@ section .heading-secondary h3 {
     justify-items: stretch;
 }
 
-.model-form-data input,
-input:focus-within {
+.model-form-data input {
     border: none;
     width: 100%;
     overflow: visible;
     background-color: transparent;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(199, 202, 219);
 }
 
-.model-form-data:focus {
-    padding-bottom: 4%;
-}
-
-.model-form-data input:invalid {
+.model-form-data input:focus {
+    padding: 5px;
     border: none;
-    background-color: transparent;
-    border-bottom: 1px solid red;
-    content: "*required";
-    color: "red"
+    border-bottom: 1px solid rgb(199, 202, 219);
 }
 
 .big-form-submit {
     text-align: center;
 }
 
-.big-form-submit input {
+.big-form-submit button {
     position: fixed;
     transform: translateX(-40px);
     bottom: 20px;
 }
 
-.section5 ul:has(input[type="radio"]) {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+
+/* input[type="text"]:required {
+    box-shadow: 0 0 0 #000;
+} */
+
+.model-form-data input:focus:required:invalid {
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid red;
+    content: '*required';
+    color: red;
+}
+
+.model-form-data input:focus,
+.model-form-data input:focus-within {
+    border: none;
 }
