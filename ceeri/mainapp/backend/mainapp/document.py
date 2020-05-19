@@ -1,57 +1,85 @@
-
 import os
 from docx import Document
 from itertools import zip_longest, tee
 from more_itertools import roundrobin
 
+from mainapp.forms import *
+from more_itertools.recipes import partition
+from operator import itemgetter
+import datetime
 
-def form1_process():
-    pass
-    doc.tables[1].rows[0].cells[1].text = form1
-
-
-def form2_process():
-    pass
-    doc.tables[2].rows[0].cells[1].text = form2
+doc = None
 
 
-def form3_process():
-    pass
-    for i, j in zip_longest(form3, [
+def form1_process(form:Form1):
+    
+    doc.tables[1].rows[0].cells[1].text  = form.cleaned_data["institute"]
+
+
+def form2_process(form:Form2):
+    
+    doc.tables[2].rows[0].cells[1].text = form.cleaned_data["project_title"]
+    
+
+
+def form3_process(form:Form3):
+
+
+    ## correct order of checkbox 
+    all_choices = form.fields["subjects"]._choices
+    for k, i in enumerate(all_choices):
+        all_choices[k] = [    i[1], 
+                          i[0] in form.cleaned_data["subjects"]] 
+         
+    
+    for i, j in zip((*roundrobin(all_choices[:5], all_choices[5:8], all_choices[8:]),), [
         cell
         for x in doc.tables[3].rows[1:]
         for cell in x.cells
-    ], fillvalue=""):
-        j.cells.text = u"\u25A1"+" "+i+" "
+    ]):
+       
+        if i[1]:
+            j.text = u"\u2611"+" "+i[0]+" "
+        else:
+            j.text = u"\u2610"+" "+i[0]+" "
+    
+            
 
+def form4_process(form:Form4):
+    doc.tables[4].rows[0].cells[1].text = ""
+    for i, j in form.cleaned_data.items():
+        if j:
+            doc.tables[4].rows[0].cells[1].text += i.title()+" : " +j +"\n"
+             
 
-def form4_process():
-    pass
-    doc.tables[4].rows[0].cells[1].text = form4
+def form5_process(form:Form5):
+    cleaned_data = list(form.cleaned_data.keys())
+    doc.tables[5].rows[0].cells[1].text = form.cleaned_data['title'].capitalize()
+    doc.tables[5].rows[1].cells[1].text = form.cleaned_data['name'].capitalize()
+    doc.tables[5].rows[1].cells[2].text = form.cleaned_data['sex'].capitalize()
 
+    cleaned_data = cleaned_data[3:]
 
-def form5_process():
-    pass
-    doc.tables[5].rows[0].cells[0].text += form5.title
-    doc.tables[5].rows[1].cells[0].text += form5.name
-    doc.tables[5].rows[1].cells[1].text = forms.sex
+    for i, j in zip(doc.tables[5].rows[2:], cleaned_data):
+        i.cells[1].text =str(form.cleaned_data[j]).capitalize()
+   
 
-    for i, j in zip(doc.tables[5].rows, form5):
-        i.cells[1].text = forms5.fulladress
-        i.cells[1].text = forms5.mobile
-        i.cells[1].text = forms5.fax
-        i.cells[1].text = forms5.email
-
-
-def form6_process():
+def form6_process(form):
     pass
     doc.tables[6].rows[0].cells[0].text += form6
     doc.tables[6].rows[0].cells[1].text += form6
 
 
-def main(all_forms):
 
+def main(forms_dict ):
+    
+    global doc   
+    
     doc = Document(os.path.join(
         os.path.dirname(__file__),
         "CEERI.docx"))
-    print(all_forms)
+    for k, i in enumerate(forms_dict.values()):
+        if k+1<= 5:
+            exec(f"form{k+1}_process(i)")
+    
+    doc.save(r"C:\Users\Dell\Desktop\github\ceeri\ceeri\mainapp\backend\mainapp\junk.docx")

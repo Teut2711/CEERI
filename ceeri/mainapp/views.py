@@ -3,6 +3,7 @@ from django.shortcuts import render
 from . import forms
 from .backend.mainapp import document
 from django.http import HttpResponse
+from more_itertools import partition 
 # Create your views here.
 
 
@@ -13,18 +14,19 @@ def index(request):
                      "form2": forms.Form2,
                      "form3": forms.Form3,
                      "form4": forms.Form4,
-                     "form4": forms.Form5,
-                     }
-
+                     "form5": forms.Form5,
+                    }
+        
         for i in range(1, len(all_forms)+1):
             all_forms[f"form{i}"] = all_forms[f"form{i}"](
                 prefix=f"form{i}",
                 data=request.POST)
-
-            if all_forms[f"form{i}"].is_valid():
-                document.main(all_forms[f"form{i}"].cleaned_data)
-            else:
-                return HttpResponse("<h1>INVALID FORM : CLICK BACK BUTTON TOP LEFT</h1>")
+        if all(all_forms[i].is_valid() for i in all_forms):
+            document.main(all_forms)
+        
+        else:
+            return HttpResponse(f"<h1>INVALID FORM : CLICK BACK BUTTON TOP LEFT<br>"
+                                "{'\n'.join(map(lambda x:x.errors if not x.is_valid() else "", all_forms.values()))}</h1>")
 
         return HttpResponse("<h1>Sent</h1>")
 
@@ -34,8 +36,7 @@ def index(request):
                  "form4": forms.Form4,
                  "form5": forms.Form5,
                  }
-    sections = [f"mainapp/section{i}.html"
-                for i in list(range(1, 5+1))]
+    sections = [f"mainapp/section{i}.html" for i in range(1, len(all_forms)+1)]
 
     for i in range(1, len(all_forms)+1):
         all_forms[f"form{i}"] = all_forms[f"form{i}"](prefix=f"form{i}")

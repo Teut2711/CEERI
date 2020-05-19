@@ -37,7 +37,7 @@ class Form4(forms.Form):
     mobile = forms.CharField(label="Mobile No.", max_length=15, required=False, widget=forms.TextInput(
         attrs={'type': "tel"}))
 
-    telephone = forms.CharField(label="Telephone No.",max_length=15,
+    telephone = forms.CharField(required=False, label="Telephone No.",max_length=15,
                                 widget=forms.TextInput(attrs={'type': "tel"}),
                                 help_text=mark_safe('<small class="form-text text-muted">'
                                                     'Eg. 0124-4089734</small>'))
@@ -51,29 +51,24 @@ class Form4(forms.Form):
 class Form5(forms.Form):
 
     title = forms.ChoiceField(
-        choices=[('prof', 'Prof'),  ('dr', 'Dr'),
-                 ('mr', 'Mr.'),  ('ms', 'Ms.')])
+        choices=[('Prof', 'Prof'),  ('Dr.', 'Dr.'),
+                 ('Mr.', 'Mr.'),  ('Ms.', 'Ms.')])
 
     name = forms.CharField(max_length=100,
                            widget=forms.TextInput)
 
-    sex = forms.ChoiceField(choices=[('M', "Male"),
-                                     ('F', 'Female')],
+    sex = forms.ChoiceField(choices=[('Male', "Male"),
+                                     ('Female', 'Female')],
                             widget=forms.RadioSelect)
 
     address = forms.CharField(max_length=100,
                               widget=forms.Textarea(attrs={"rows":"4"}))
 
-    mobile = forms.CharField(max_length=15,
+    mobile_telephone = forms.CharField(label="Mobile/Telephone", max_length=15,
                              widget=forms.TextInput(
                              attrs={'type': "tel"}),
                              help_text=mark_safe('<small class="form-text text-muted">'
                                                  'Eg. 9098956756</small>'))
-
-    telephone = forms.CharField(max_length=15,
-                                widget=forms.TextInput(attrs={'type': "tel"}),
-                                help_text=mark_safe('<small class="form-text text-muted">'
-                                                    'Eg. 0124-4089734</small>'))
 
     fax = forms.CharField(max_length=15,
                           widget=forms.TextInput(attrs={'type': "tel"}),
@@ -85,8 +80,8 @@ class Form5(forms.Form):
     position = forms.CharField(max_length=100,
                                widget=forms.TextInput)
 
-    dob = forms.DateField(label="Date of Birth",
-                          widget=forms.DateInput(
+    dob = forms.CharField(label="Date of Birth",
+                          widget=forms.DateInput(format="%d-%m-%Y",
                               attrs={'type': 'date'}))
 
     highestdegree = forms.CharField(label="Highest Degree University/Institute",
@@ -97,3 +92,18 @@ class Form5(forms.Form):
         label="Total time to be devoted to project(in number of months)",
         min_value=0,
     )
+
+
+
+# class Form6(forms.Form):
+
+#     class Form6main(forms.Form):
+#         name = forms.CharField(max_length=100,
+#                             widget=forms.TextInput)
+        
+#         address = forms.CharField(max_length=100,
+#                                 widget=forms.Textarea(attrs={"rows":"4"}))
+
+#         highestqualification = forms.CharField(label="Highest Qualification",
+#                                         max_length=200,
+#                                         widget=forms.TextInput)
