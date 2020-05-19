@@ -159,3 +159,12 @@ input[type="text"]:required {
     width: 100%;
     padding: 1%;
 }
+
+.section6 .mini-form {
+    width: 80%;
+}
+
+.section6 .mini-form--heading {
+    text-decoration: underline;
+    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}

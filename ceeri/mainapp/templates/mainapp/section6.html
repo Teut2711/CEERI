@@ -1,46 +1,18 @@
 <div class="heading-secondary">
     <h3 >
-        Other participants (give name, address, and highest qualification for each of the Co-PrincipalInvestigator) (CO-I)
+        Other participants (give name, address, and highest qualification for each of the Co-Principal Investigator) (CO-I)
     </h3>
 
 <hr class="my-4">
 
-
 <div class="model-form-data">
-    <table>
-        <tbody>
+   
+   {% for form in form6 %}
+   <div class="mini-form">
+   <h5 class="mini-form--heading">Co-Principal Investigator {{forloop.counter}}</h5>
+     {{form.as_p}}
+   </div>
+    <hr class="my-4">
 
-            {% for i in section6 %}
-            <tr>
-
-                <td>
-                    <div class="form-head">
-                        Name
-                    </div>
-                    <div class="form-input">
-                        <input type="text" />
-                    </div>
-                </td>
-                <td>
-                    <div class="form-head">
-                        Address
-                    </div>
-                    <div class="form-input">
-                        <input type="text" />
-                    </div>
-                </td>
-                <td>
-                    <div class="form-head">
-                        Highest Qualificaton
-                    </div>
-                    <div class="form-input">
-                        <input type="text" />
-                    </div>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-
-    </table>
-
+ {% endfor %} 
 </div>

@@ -95,15 +95,14 @@ class Form5(forms.Form):
 
 
 
-# class Form6(forms.Form):
+class Form6(forms.Form):
+    
+    name = forms.CharField(max_length=100,
+                        widget=forms.TextInput)
 
-#     class Form6main(forms.Form):
-#         name = forms.CharField(max_length=100,
-#                             widget=forms.TextInput)
-        
-#         address = forms.CharField(max_length=100,
-#                                 widget=forms.Textarea(attrs={"rows":"4"}))
+    address = forms.CharField(max_length=100,
+                            widget=forms.Textarea(attrs={"rows":"4"}))
 
-#         highestqualification = forms.CharField(label="Highest Qualification",
-#                                         max_length=200,
-#                                         widget=forms.TextInput)
+    highestqualification = forms.CharField(label="Highest Qualification",
+                                    max_length=200,
+                                    widget=forms.TextInput)
